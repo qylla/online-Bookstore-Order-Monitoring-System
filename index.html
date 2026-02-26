@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore Order Monitoring</title>
+</head>
+<body>
+
+<h2>Order Monitoring System</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Book Title</th>
+            <th>Order Date</th>
+            <th>Shipping Cost</th>
+            <th>Exchange Rate (USD to MYR)</th>
+        </tr>
+    </thead>
+    <tbody id="orderTable">
+    </tbody>
+</table>
+
+<script>
+async function getExchangeRate() {
+    const response = await fetch("https://open.er-api.com/v6/latest/USD");
+    const data = await response.json();
+    return data.rates.MYR;
+}
+
+async function loadData() {
+    const rate = await getExchangeRate();
+
+    document.getElementById("orderTable").innerHTML += `
+        <tr>
+            <td>Ali Ahmad</td>
+            <td>Cyber Security Basics</td>
+            <td>2026-02-01</td>
+            <td>RM 5.00</td>
+            <td>${rate}</td>
+        </tr>
+    `;
+}
+
+loadData();
+</script>
+
+</body>
+</html>
