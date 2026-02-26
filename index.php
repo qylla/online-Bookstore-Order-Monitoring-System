@@ -5,13 +5,13 @@ include 'db.php';
    1. SHIPPING COST API (EasyParcel)
 ================================= */
 
-$apiKey = "EP-4c3yL6nza"; // your API key
+$apiKey = "EP-4c3yL6nza"; 
 $shipping_cost = "N/A";
 
 $url = "https://app.easyparcel.com/api/easyparcel/quotation";
 
 $data = [
-    "api" => $apiKey,   // if fails, change to "api_key"
+    "api" => $apiKey,   
     "bulk" => [
         [
             "pick_code" => "43000",
@@ -35,7 +35,6 @@ $result = file_get_contents($url, false, $context);
 if ($result !== FALSE) {
     $response = json_decode($result, true);
 
-    /* ===== DEBUG (TAKE SCREENSHOT FOR REPORT) ===== */
     echo "<pre>";
     print_r($response);
     echo "</pre>";
@@ -123,3 +122,4 @@ $query = $conn->query($sql);
 
 </body>
 </html>
+
